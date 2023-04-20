@@ -23,7 +23,7 @@ formats_pic=(".jpeg" ".jpg" ".png" ".heif" ".bmp")
 
 for format in ${formats_pic[@]}; do   # iterrating over picture formats
     mkdir pictures_extracted/$format   # creating a directory for a format
-    find . -type f -name "*$format" -exec cp {} pictures_extracted/$format \;
+    find $path -type f -name "*$format" -exec cp {} pictures_extracted/$format \;
 done
 
 echo "Done!"
