@@ -36,7 +36,9 @@ for format in ${formats_img[@]}; do   # iterrating over picture formats
         echo "No images of type: $format"
         rmdir $format   # no images of this format
     else
-        echo -e "\033[32mEctracted images of type: $format\033[0m"
+        num_files_extracted=$(ls $format | wc -l)   # number of files copied
+        num_files_extracted=$(echo $num_files_extracted)   # removing spaced produced by wc command
+        echo -e "\033[32mEctracted images of type: $format ($num_files_extracted)\033[0m"
     fi
 done
 
@@ -68,7 +70,8 @@ for format in ${formats_vid[@]}; do   # iterrating over video formats
         echo "No vidoes of type: $format"
         rmdir $format   # no videos of this format
     else
-        echo -e "\033[32mEctracted vidoes of type: $format\033[0m"
+        num_files_extracted=$( ls $format | wc -l )   # number of files copied
+        echo -e "\033[32mEctracted vidoes of type: $format ($num_files_extracted)\033[0m"
     fi
 done
 
