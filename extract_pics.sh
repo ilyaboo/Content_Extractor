@@ -7,15 +7,15 @@ while true; do
     if test -d $REPLY; then   # checking if the path is valid
         break
     else
-        echo -e "\n"$REPLY" is not a valid absolute path!"
-        echo -e "Please try again.\n"
+        echo -e "\n\033[31m"$REPLY" is not a valid absolute path!"
+        echo -e "Please try again.\033[0m\n"
     fi
 done
 
 path=$REPLY
 echo -e "\nMedia content will be extracted from the following directory:"
 echo -e $path"\n"
-echo -e "Starting extraction...\n"
+echo -e "\033[32mStarting extraction...\033[0m\n"
 
 
 
@@ -31,7 +31,7 @@ for format in ${formats_img[@]}; do   # iterrating over picture formats
         echo "No images of type: $format"
         rmdir $format   # no images of this format
     else
-        echo "Ectracted images of type: $format"
+        echo -e "\033[32mEctracted images of type: $format\033[0m"
     fi
 done
 
@@ -39,7 +39,7 @@ cd ..
 
 if [ -z "$(ls images_extracted)" ]; then   # checking if we extracted any images of any format
     rmdir images_extracted   # no images in total
-    echo "NO IMAGES FOUND"
+    echo -e "\n\033[31mNO IMAGES FOUND\033[0m"
 fi
 
 echo
@@ -58,7 +58,7 @@ for format in ${formats_vid[@]}; do   # iterrating over video formats
         echo "No vidoes of type: $format"
         rmdir $format   # no videos of this format
     else
-        echo "Ectracted vidoes of type: $format"
+        echo -e "\033[32mEctracted vidoes of type: $format\033[0m"
     fi
 done
 
@@ -66,9 +66,9 @@ cd ..
 
 if [ -z "$(ls videos_extracted)" ]; then   # checking if we extracted any videos of any format
     rmdir videos_extracted   # no videos in total
-    echo "NO VIDEOS FOUND"
+    echo -e "\n\033[31mNO VIDEOS FOUND\033[0m"
 fi
 
 echo
 
-echo "Done!"
+echo -e "\033[32mExtraction completed!\033[0m"
