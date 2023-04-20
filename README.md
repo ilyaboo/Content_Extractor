@@ -1,13 +1,13 @@
 # Content Extractor
 
 ## Description
-This shell script extracts media content from a directory specified by the user. It searches for images and videos in the directory and its subdirectories, and copies them to new directories, categorized by their file format.
+This shell script extracts media content and documents from a directory specified by the user. It searches for images, videos, and documents in the directory and its subdirectories, and copies them to new directories, categorized by their file format.
 
 ## How It Works
 
-The script prompts the user to enter an absolute path to the directory containing the media content. It then creates two new directories, one for extracted images and one for extracted videos.
+The script prompts the user to enter an absolute path to the directory containing the content. It then creates three new directories, one for extracted images, one for extracted videos, and one for extracted documents.
 
-For each media format, the script searches for files with the corresponding extension and copies them to the appropriate directory. If no files of a certain format are found, the corresponding directory is deleted.
+For each format, the script searches for files with the corresponding extension and copies them to the appropriate directory, indicating how many files of each format copied. If no files of a certain format are found, the script will not include this directory.
 
 ## Installation
 
@@ -30,9 +30,9 @@ $ chmod +x extract_media.sh
 ```terminal
 $ ./extract_media.sh
 ```
-2. Follow the prompts to enter the absolute path to the directory containing the media content.
+2. Follow the prompts to enter the absolute path to the directory containing the content.
 3. Wait for the script to complete the extraction process.
-4. The extracted images and videos will be saved in separate directories named images_extracted and videos_extracted, respectively, in the same directory as the script.
-5. If no media content is found, the script will output a message indicating that no images or videos were found.
+4. The extracted images, videos, and documents will be saved in separate directories named `images_extracted`, `videos_extracted`, and `documents_extracted` respectively, in the same directory as the script.
+5. If no media content is found, the script will output a message indicating that no content were found.
 
 ## Enjoy! :)
