@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # reading user's input (path)
-echo "Enter the absolute path to the directory from which you want to extract pictures:"
+echo "Enter the absolute path to the directory from which you want to extract media:"
 while true; do
     read
     if test -d $REPLY; then   # checking if the path is valid
@@ -13,17 +13,28 @@ while true; do
 done
 
 path=$REPLY
-echo -e "\nPictures will be extracted from the following directory:"
+echo -e "\nMedia content will be extracted from the following directory:"
 echo -e $path"\n"
 echo -e "Starting extraction...\n"
 
-mkdir pictures_extracted
+# setting up parameters for image extraction
+mkdir images_extracted   # createing directory for extracted images
+cd images_extracted
+formats_img=("jpeg" "jpg" "png" "heif" "bmp")   # image formats script extracts
 
-formats_pic=(".jpeg" ".jpg" ".png" ".heif" ".bmp")
-
-for format in ${formats_pic[@]}; do   # iterrating over picture formats
-    mkdir pictures_extracted/$format   # creating a directory for a format
-    find $path -type f -name "*$format" -exec cp {} pictures_extracted/$format \;
+for format in ${formats_img[@]}; do   # iterrating over picture formats
+    mkdir $format   # creating a directory for a format
+    find $path -type f -name "*.$format" -exec cp {} $format \;   # searching and copying images of the format
+    if [ -z "$(ls $format)" ]; then   # checking if we extracted any images of the format
+        echo "no images of type $format"
+        rmdir $format   # no images of this format
+    fi
 done
+
+cd ..
+
+if [ -z "$(ls images_extracted)" ]; then   # checking if we extracted any images of any format
+    rmdir images_extracted   # no images in total
+fi
 
 echo "Done!"
